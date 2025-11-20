@@ -4,6 +4,7 @@ export const LETTER_DISTRIBUTION = Object.freeze({
   Q: 1, R: 6, S: 4, T: 6, U: 4, V: 2, W: 2, X: 1,
   Y: 2, Z: 1,
 });
+const NUM_TILES_ALLOWED_IN_HAND = 10;
 
 const getLetterPool = (distribution = LETTER_DISTRIBUTION) => {
   const pool = [];
@@ -19,7 +20,7 @@ export const drawLetters = () => {
   const pool = getLetterPool();
 
   const hand = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < NUM_TILES_ALLOWED_IN_HAND; i++) {
     const idx = Math.floor(Math.random() * pool.length);
     hand.push(pool[idx]);
     pool.splice(idx, 1); // remove drawn letter so it can't be drawn again
