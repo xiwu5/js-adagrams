@@ -23,7 +23,12 @@ export const drawLetters = () => {
   for (let i = 0; i < NUM_TILES_ALLOWED_IN_HAND; i++) {
     const randomIdx = Math.floor(Math.random() * pool.length);
     hand.push(pool[randomIdx]);
-    pool.splice(randomIdx, 1); // remove drawn letter so it can't be drawn again
+
+    const lastIdx = pool.length - 1;
+    if (randomIdx !== lastIdx) {
+      pool[randomIdx] = pool[lastIdx];
+    }
+    pool.pop();
   }
 
   return hand;
