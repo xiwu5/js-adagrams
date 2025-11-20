@@ -21,9 +21,9 @@ export const drawLetters = () => {
 
   const hand = [];
   for (let i = 0; i < NUM_TILES_ALLOWED_IN_HAND; i++) {
-    const idx = Math.floor(Math.random() * pool.length);
-    hand.push(pool[idx]);
-    pool.splice(idx, 1); // remove drawn letter so it can't be drawn again
+    const randomIdx = Math.floor(Math.random() * pool.length);
+    hand.push(pool[randomIdx]);
+    pool.splice(randomIdx, 1); // remove drawn letter so it can't be drawn again
   }
 
   return hand;
