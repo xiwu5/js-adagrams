@@ -71,7 +71,10 @@ export const scoreWord = (word) => {
     totalScore += letterPoints;
   }
 
-  if (normalizedWord.length >= BONUS_LETTER_THRESHOLD) {
+  if (
+    normalizedWord.length >= BONUS_LETTER_THRESHOLD &&
+    normalizedWord.length <= NUM_TILES_ALLOWED_IN_HAND
+  ) {
     totalScore += BONUS_POINTS_FOR_LENGTH;
   }
 
