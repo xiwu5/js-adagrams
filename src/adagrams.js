@@ -18,11 +18,13 @@ export const BONUS_LETTER_THRESHOLD = 7;
 
 const getLetterPool = (distribution = LETTER_DISTRIBUTION) => {
   const pool = [];
+
   Object.entries(distribution).forEach(([letter, quantity]) => {
     for (let i = 0; i < quantity; i++) {
       pool.push(letter);
     }
   });
+
   return pool;
 };
 
