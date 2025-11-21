@@ -12,7 +12,8 @@ export const SCORE_CHART = Object.freeze({
   Y: 4, Z: 10,
 });
 
-const NUM_TILES_ALLOWED_IN_HAND = 10;
+export const NUM_TILES_ALLOWED_IN_HAND = 10;
+export const BONUS_POINTS_FOR_LENGTH = 8;
 
 const getLetterPool = (distribution = LETTER_DISTRIBUTION) => {
   const pool = [];
@@ -70,7 +71,7 @@ export const scoreWord = (word) => {
   }
 
   if (normalizedWord.length >= 7) {
-    totalScore += 8;
+    totalScore += BONUS_POINTS_FOR_LENGTH;
   }
 
   return totalScore;
