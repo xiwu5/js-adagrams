@@ -82,5 +82,45 @@ export const scoreWord = (word) => {
 };
 
 export const highestScoreFrom = (words) => {
-  // Implement this method for wave 4
+  let bestWord = null;
+  let bestScore = 0;
+
+  for (const word of words) {
+    const score = scoreWord(word);
+
+    if (bestWord === null || score > bestScore) {
+      bestWord = word;
+      bestScore = score;
+      continue;
+    }
+
+    if (score === bestScore) {
+      if (breakTie(word, bestWord)) {
+        bestWord = word;
+        bestScore = score;
+      }
+    }
+  }
+
+  return { word: bestWord, score: bestScore };
+};
+
+const breakTie = (candidate, currentBest) => {
+  // Prefer a 10-letter word if the current best is not 10 letters
+  if (candidate.length === NUM_TILES_ALLOWED_IN_HAND && currentBest.length !== NUM_TILES_ALLOWED_IN_HAND) {
+    return true;
+  }
+
+  // If current best is 10 letters, it wins
+  if (currentBest.length === NUM_TILES_ALLOWED_IN_HAND && candidate.length !== NUM_TILES_ALLOWED_IN_HAND) {
+    return false;
+  }
+
+  // If neither is 10 letters, prefer the shorter word
+  if (candidate.length < currentBest.length) {
+    return true;
+  }
+
+  // Otherwise keep the existing word, including when lengths equal case
+  return false;
 };
