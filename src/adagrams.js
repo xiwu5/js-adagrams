@@ -11,6 +11,7 @@ export const SCORE_CHART = Object.freeze({
   Q: 10, R: 1, S: 1, T: 1, U: 1, V: 4, W: 4, X: 8,
   Y: 4, Z: 10,
 });
+
 const NUM_TILES_ALLOWED_IN_HAND = 10;
 
 const getLetterPool = (distribution = LETTER_DISTRIBUTION) => {
@@ -58,7 +59,21 @@ export const usesAvailableLetters = (input, lettersInHand) => {
 };
 
 export const scoreWord = (word) => {
-  // Implement this method for wave 3
+  const normalizedWord = (word || '').toString().toUpperCase();
+
+  if (normalizedWord.length === 0) return 0;
+
+  let totalScore = 0;
+  for (const letter of normalizedWord) {
+    const letterPoints = SCORE_CHART[letter] || 0;
+    totalScore += letterPoints;
+  }
+
+  if (normalizedWord.length >= 7) {
+    totalScore += 8;
+  }
+
+  return totalScore;
 };
 
 export const highestScoreFrom = (words) => {
